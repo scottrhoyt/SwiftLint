@@ -8,7 +8,10 @@
 
 ##### Enhancements
 
-* None.
+* Support command comment modifiers (`previous`, `this` & `next`) to limit the
+  command's scope to a single line.
+  [JP Simard](https://github.com/jpsim)
+  [#222](https://github.com/realm/SwiftLint/issues/222)
 
 ##### Bug Fixes
 
