@@ -2,11 +2,8 @@ language: objective-c
 osx_image: xcode7.2
 git:
   submodules: false
-before_install:
-  - script/upstall-brew-swiftlint
 script: script/cibuild | xcpretty
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-  - swiftlint
-  - sudo installer -allowUntrusted -pkg swiftlint.pkg -target /
-  - swiftlint
+  - script/upstall-brew-swiftlint
+  - script/benchmark
