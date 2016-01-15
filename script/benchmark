@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Set `time` format
+TIMEFORMAT=%R
+
+# Testing Variables
+TEST_REPO_BASE_URL='https://github.com/Carthage/Carthage'
+TEST_TAG_NAME='0.11'
+TEST_REPO_DIR='Carthage-0.11'
+
+# Download Repo
+TEST_REPO_URL="$TEST_REPO_BASE_URL/archive/$TEST_TAG_NAME.zip"
+echo $TEST_REPO_URL
+curl -OL $TEST_REPO_URL
+unzip -qq "$TEST_TAG_NAME.zip"
+
+# Capture time to run installed SwiftLint
+INSTALLED_VERSION_TIME=$( { time swiftlint lint --path $TEST_REPO_DIR 1>/dev/null 2>/dev/null; } 2>&1 )  # Captures time only.
+
+# Install built version
+sudo installer -allowUntrusted -pkg swiftlint.pkg -target /
+
+# Capture time to run built SwiftLint
+BUILT_VERSION_TIME=$( { time swiftlint lint --path $TEST_REPO_DIR 1>/dev/null 2>/dev/null; } 2>&1 )  # Captures time only.
+
+printf "Installed time: $INSTALLED_VERSION_TIME\nBuilt time: $BUILT_VERSION_TIME\n"
