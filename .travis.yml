@@ -9,3 +9,4 @@ script: script/cibuild | xcpretty
 after_success:
   - bash <(curl -s https://codecov.io/bash)
   - swiftlint
+  - sudo installer -allowUntrusted -pkg swiftlint.pkg -target /
