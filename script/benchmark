@@ -7,6 +7,7 @@ TIMEFORMAT=%R
 TEST_REPO_BASE_URL='https://github.com/Carthage/Carthage'
 TEST_TAG_NAME='0.11'
 TEST_REPO_DIR='TEST_REPO'
+TEST_CONFIG='script/.swiftlint.yml'
 
 # Download Repo
 git clone "$TEST_REPO_BASE_URL.git" $TEST_REPO_DIR
@@ -17,12 +18,12 @@ make bootstrap
 cd ..
 
 # Capture time to run installed SwiftLint
-INSTALLED_VERSION_TIME=$( { time swiftlint lint --path $TEST_REPO_DIR 1>/dev/null 2>/dev/null; } 2>&1 )  # Captures time only.
+INSTALLED_VERSION_TIME=$( { time swiftlint lint --path $TEST_REPO_DIR --config $TEST_CONFIG 1>/dev/null 2>/dev/null; } 2>&1 )  # Captures time only.
 
 # Install built version
 sudo installer -allowUntrusted -pkg swiftlint.pkg -target /
 
 # Capture time to run built SwiftLint
-BUILT_VERSION_TIME=$( { time swiftlint lint --path $TEST_REPO_DIR 1>/dev/null 2>/dev/null; } 2>&1 )  # Captures time only.
+BUILT_VERSION_TIME=$( { time swiftlint lint --path $TEST_REPO_DIR --config $TEST_CONFIG 1>/dev/null 2>/dev/null; } 2>&1 )  # Captures time only.
 
 printf "Installed time: $INSTALLED_VERSION_TIME\nBuilt time: $BUILT_VERSION_TIME\n"
