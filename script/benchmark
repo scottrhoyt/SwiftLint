@@ -10,12 +10,14 @@ TEST_REPO_DIR='TEST_REPO'
 TEST_CONFIG='script/.swiftlint.yml'
 
 # Download Repo
-git clone "$TEST_REPO_BASE_URL.git" $TEST_REPO_DIR
+echo "Checking out the test repo. This will take some time."
+git clone "$TEST_REPO_BASE_URL.git" $TEST_REPO_DIR 1>/dev/null 2>/dev/null
 cd $TEST_REPO_DIR
-git checkout $TEST_TAG_NAME
-make bootstrap
+git checkout $TEST_TAG_NAME 1>/dev/null 2>/dev/null
+make bootstrap 1>/dev/null 2>/dev/null
 cd ..
 
+echo "Running benchmarks. This will take some time."
 # Capture time to run installed SwiftLint
 INSTALLED_VERSION_TIME=$( { time swiftlint lint --path $TEST_REPO_DIR --config $TEST_CONFIG 1>/dev/null 2>/dev/null; } 2>&1 )  # Captures time only.
 

@@ -6,9 +6,10 @@ INSTALL_TAG_NAME='master'
 INSTALL_REPO_DIR='SWIFTLINT_MASTER'
 
 # Clone source, checkout, and install.
-git clone "$INSTALL_BASE_URL.git" $INSTALL_REPO_DIR
+echo "Checking out SwiftLint baseline. This will take some time."
+git clone "$INSTALL_BASE_URL.git" $INSTALL_REPO_DIR 1>/dev/null 2>/dev/null
 cd $INSTALL_REPO_DIR
-git checkout $INSTALL_TAG_NAME
-echo "Making SwiftLint baseline"
-make install
+git checkout $INSTALL_TAG_NAME 2>/dev/null
+echo "Making SwiftLint baseline. This will take some time."
+make install 1>/dev/null 2>/dev/null
 cd ..
