@@ -19,12 +19,20 @@ cd ..
 
 echo "Running benchmarks. This will take some time."
 # Capture time to run installed SwiftLint
-INSTALLED_VERSION_TIME=$( { time swiftlint lint --path $TEST_REPO_DIR --config $TEST_CONFIG 1>/dev/null 2>/dev/null; } 2>&1 )  # Captures time only.
+INSTALLED_VERSION_TIME1=$( { time swiftlint lint --path $TEST_REPO_DIR --config $TEST_CONFIG 1>/dev/null 2>/dev/null; } 2>&1 )  # Captures time only.
+INSTALLED_VERSION_TIME2=$( { time swiftlint lint --path $TEST_REPO_DIR --config $TEST_CONFIG 1>/dev/null 2>/dev/null; } 2>&1 )  # Captures time only.
+INSTALLED_VERSION_TIME3=$( { time swiftlint lint --path $TEST_REPO_DIR --config $TEST_CONFIG 1>/dev/null 2>/dev/null; } 2>&1 )  # Captures time only.
+INSTALLED_VERSION_TIME4=$( { time swiftlint lint --path $TEST_REPO_DIR --config $TEST_CONFIG 1>/dev/null 2>/dev/null; } 2>&1 )  # Captures time only.
+INSTALLED_VERSION_TIME5=$( { time swiftlint lint --path $TEST_REPO_DIR --config $TEST_CONFIG 1>/dev/null 2>/dev/null; } 2>&1 )  # Captures time only.
 
 # Install built version
 sudo installer -allowUntrusted -pkg swiftlint.pkg -target /
 
 # Capture time to run built SwiftLint
-BUILT_VERSION_TIME=$( { time swiftlint lint --path $TEST_REPO_DIR --config $TEST_CONFIG 1>/dev/null 2>/dev/null; } 2>&1 )  # Captures time only.
+BUILT_VERSION_TIME1=$( { time swiftlint lint --path $TEST_REPO_DIR --config $TEST_CONFIG 1>/dev/null 2>/dev/null; } 2>&1 )  # Captures time only.
+BUILT_VERSION_TIME2=$( { time swiftlint lint --path $TEST_REPO_DIR --config $TEST_CONFIG 1>/dev/null 2>/dev/null; } 2>&1 )  # Captures time only.
+BUILT_VERSION_TIME3=$( { time swiftlint lint --path $TEST_REPO_DIR --config $TEST_CONFIG 1>/dev/null 2>/dev/null; } 2>&1 )  # Captures time only.
+BUILT_VERSION_TIME4=$( { time swiftlint lint --path $TEST_REPO_DIR --config $TEST_CONFIG 1>/dev/null 2>/dev/null; } 2>&1 )  # Captures time only.
+BUILT_VERSION_TIME5=$( { time swiftlint lint --path $TEST_REPO_DIR --config $TEST_CONFIG 1>/dev/null 2>/dev/null; } 2>&1 )  # Captures time only.
 
-printf "Installed time: $INSTALLED_VERSION_TIME\nBuilt time: $BUILT_VERSION_TIME\n"
+printf "Installed time1: $INSTALLED_VERSION_TIME1\nInstalled time2: $INSTALLED_VERSION_TIME2\nInstalled time3: $INSTALLED_VERSION_TIME3\nInstalled time4: $INSTALLED_VERSION_TIME4\nInstalled time5: $INSTALLED_VERSION_TIME5\nBuilt time1: $BUILT_VERSION_TIME1\nBuilt time2: $BUILT_VERSION_TIME2\nBuilt time3: $BUILT_VERSION_TIME3\nBuilt time4: $BUILT_VERSION_TIME4\nBuilt time5: $BUILT_VERSION_TIME5\n"
