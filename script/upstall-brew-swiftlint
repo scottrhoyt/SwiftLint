@@ -1,21 +1,14 @@
 #!/bin/bash
 
-# Update Homebrew
-brew update
+# Install Variables
+INSTALL_BASE_URL='https://github.com/realm/SwiftLint'
+INSTALL_TAG_NAME='master'
+INSTALL_REPO_DIR='SWIFTLINT_MASTER'
 
-# Check for SwiftLint install
-VERSIONS=`brew ls --versions swiftlint`
-if [[ -z $VERSIONS ]]; then
-  echo 'SwiftLint not installed. Installing.'
-	brew install swiftlint
-else
-  echo 'SwiftLint installed. Upgrading if neccessary.'
-	brew outdated swiftlint || brew upgrade swiftlint
-fi
-
-
-## Build and install from master
-#curl -OL https://github.com/realm/SwiftLint/archive/master.zip
-#unzip -qq master.zip
-#cd SwiftLint-master
-#make install
+# Clone source, checkout, and install.
+git clone "$INSTALL_BASE_URL.git" $INSTALL_REPO_DIR
+cd $INSTALL_REPO_DIR
+git checkout $INSTALL_TAG_NAME
+echo "Making SwiftLint baseline"
+make install
+cd ..
