@@ -12,3 +12,10 @@ else
   echo 'SwiftLint installed. Upgrading if neccessary.'
 	brew outdated swiftlint || brew upgrade swiftlint
 fi
+
+
+## Build and install from master
+#curl -OL https://github.com/realm/SwiftLint/archive/master.zip
+#unzip -qq master.zip
+#cd SwiftLint-master
+#make install
