@@ -1,6 +1,5 @@
 #!/bin/bash
-echo "Where are we?"
-pwd
+
 # Set `time` format
 TIMEFORMAT=%R
 
@@ -13,21 +12,11 @@ TEST_REPO_DIR='TEST_REPO'
 git clone "$TEST_REPO_BASE_URL.git" $TEST_REPO_DIR
 ls
 cd $TEST_REPO_DIR
-echo "Are we where we need to be checkout/bootstrap?"
-pwd
 git checkout $TEST_TAG_NAME
-ls
 make bootstrap
 cd ..
 
-echo "Are we where we need to be to run SwiftLint?"
-
-pwd
-ls
-
 # Capture time to run installed SwiftLint
-echo "What swiftlint command are we running?"
-echo swiftlint lint --path $TEST_REPO_DIR
 INSTALLED_VERSION_TIME=$( { time swiftlint lint --path $TEST_REPO_DIR 1>/dev/null 2>/dev/null; } 2>&1 )  # Captures time only.
 
 # Install built version
