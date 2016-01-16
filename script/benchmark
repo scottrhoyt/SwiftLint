@@ -26,6 +26,8 @@ pwd
 ls
 
 # Capture time to run installed SwiftLint
+echo "What swiftlint command are we running?"
+echo swiftlint lint --path $TEST_REPO_DIR
 INSTALLED_VERSION_TIME=$( { time swiftlint lint --path $TEST_REPO_DIR 1>/dev/null 2>/dev/null; } 2>&1 )  # Captures time only.
 
 # Install built version
