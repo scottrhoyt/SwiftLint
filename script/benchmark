@@ -6,13 +6,14 @@ TIMEFORMAT=%R
 # Testing Variables
 TEST_REPO_BASE_URL='https://github.com/Carthage/Carthage'
 TEST_TAG_NAME='0.11'
-TEST_REPO_DIR='Carthage-0.11'
+TEST_REPO_DIR='TEST_REPO'
 
 # Download Repo
-TEST_REPO_URL="$TEST_REPO_BASE_URL/archive/$TEST_TAG_NAME.zip"
-echo $TEST_REPO_URL
-curl -OL $TEST_REPO_URL
-unzip -qq "$TEST_TAG_NAME.zip"
+git clone "$TEST_REPO_BASE_URL.git" $TEST_REPO_DIR
+cd $TEST_REPO_DIR
+git checkout $TEST_TAG_NAME
+make bootstrap
+cd ..
 
 # Capture time to run installed SwiftLint
 INSTALLED_VERSION_TIME=$( { time swiftlint lint --path $TEST_REPO_DIR 1>/dev/null 2>/dev/null; } 2>&1 )  # Captures time only.
